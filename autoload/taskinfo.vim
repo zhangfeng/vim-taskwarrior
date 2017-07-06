@@ -33,8 +33,10 @@ function! taskinfo#init(command, filter, info)
     nnoremap <silent> <buffer> q :call taskinfo#quit()<CR>
     nnoremap <silent> <buffer> <enter> :call taskinfo#quit()<CR>
 
-    if a:command != 'info'
-        wincmd W
+    if !exists("g:taskwarrior_goto_info") || g:taskwarrior_goto_info == 0
+        if a:command != 'info'
+            wincmd W
+        endif
     endif
 endfunction
 
